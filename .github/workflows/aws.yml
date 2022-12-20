@@ -56,7 +56,7 @@ jobs:
           CI: true
         run:
           npm ci
-      - name: dist
+      - name: deploy
         run:
           zip -j deploy.zip ./dist/*
           aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip
