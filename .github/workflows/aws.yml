@@ -58,5 +58,5 @@ jobs:
           npm ci
       - name: dist
         run:
-          zip -j dist.zip ./dist/*
+          zip -j deploy.zip ./dist/*
           aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip
