@@ -51,7 +51,7 @@ jobs:
         env:
           CI: true
         run:
-          npm ci
+          npm i
       - name: zip
         run:
           zip -j deploy.zip ./index.mjs ./package.json ./package-lock.json ./node_modules/*
