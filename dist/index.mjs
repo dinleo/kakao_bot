@@ -1,4 +1,4 @@
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
 
 // Set the region where the bucket is located
 AWS.config.update({region: 'ap-northeast-2'});
