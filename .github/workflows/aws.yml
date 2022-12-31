@@ -54,7 +54,7 @@ jobs:
           npm ci
       - name: zip
         run:
-          zip -j deploy.zip ./index.mjs ./package.json ./package-lock.json ./node_modules
+          zip -j deploy.zip ./index.mjs ./package.json ./package-lock.json ./node_modules/
       - name: deploy
         run:
           aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip
