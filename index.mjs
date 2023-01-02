@@ -3,35 +3,43 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-const ACCESS_POINT_ARN = process.env.ACCESS_POINT_ARN
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
+const AWS_S3_ACCESS_POINT_ARN = process.env.AWS_S3_ACCESS_POINT_ARN
+const AWS_S3_ACCESS_ID = process.env.AWS_S3_ACCESS_ID
+const AWS_S3_ACCESS_SECRET = process.env.AWS_S3_ACCESS_SECRET
 
 AWS.config.update({region: 'ap-northeast-2'});
 AWS.config.update({
-    credentials: new AWS.Credentials(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    credentials: new AWS.Credentials(AWS_S3_ACCESS_ID, AWS_S3_ACCESS_SECRET)
 });
 
-const s3 = new AWS.S3({ params: { AccessPointArn: ACCESS_POINT_ARN } });
+const s3 = new AWS.S3({ params: { AccessPointArn: AWS_S3_ACCESS_POINT_ARN } });
 
+export const handler = async(event) => {
+    // TODO implement
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify('d'),
+    };
+    return response;
+};
 
-// const readJSON = () => {
-//     let json;
-//     s3.getObject({
-//         Bucket: 'kakaobot',
-//         Key: 'JSON/dict/words.json'
-//     }, function(err, data) {
-//         if (err) {
-//             console.error(err);
-//         } else {
-//             json = JSON.parse(data.Body.toString())
-//         }
-//     });
-//
-//     return json
-// }
+const readJSON = () => {
+    let json;
+    s3.getObject({
+        Bucket: 'kakaobot',
+        Key: 'JSON/dict/words.json'
+    }, function(err, data) {
+        if (err) {
+            console.error(err);
+        } else {
+            json = JSON.parse(data.Body.toString())
+        }
+    });
 
-console.log('good!!!!!')
+    return json
+}
+
+console.log(readJSON()['a'])
 
 
 
@@ -47,11 +55,3 @@ console.log('good!!!!!')
 //     }
 // });
 
-export const handler = async(event) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('d'),
-    };
-    return response;
-};

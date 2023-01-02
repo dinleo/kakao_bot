@@ -15,17 +15,30 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18'
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_LAMBDA_ACCESS_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_LAMBDA_ACCESS_SECRET }}
           aws-region: ap-northeast-2
+
       - name: npm install
         env:
           CI: true
         run:
           npm install
+
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "AWS_S3_ACCESS_ID=$AWS_S3_ACCESS_ID" >> .env
+          echo "AWS_S3_ACCESS_SECRET=$AWS_S3_ACCESS_SECRET" >> .env
+          echo "AWS_S3_ACCESS_POINT_ARN=$AWS_S3_ACCESS_POINT_ARN" >> .env
+        env:
+          AWS_S3_ACCESS_ID: ${{ secrets.AWS_S3_ACCESS_ID }}
+          AWS_S3_ACCESS_SECRET: ${{ secrets.AWS_S3_ACCESS_SECRET }}
+          AWS_S3_ACCESS_POINT_ARN: ${{ secrets.AWS_S3_ACCESS_POINT_ARN }}
+
       - name: zip
         run:
           zip -r deploy.zip ./*
