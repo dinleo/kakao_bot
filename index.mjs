@@ -16,10 +16,11 @@ const s3 = new AWS.S3({params: {AccessPointArn: AWS_S3_ACCESS_POINT_ARN}});
 
 export const handler = async (event) => {
     // TODO implement
-    let json = await readJSON()
+    // let json = await readJSON()
+
     const response = {
         statusCode: 200,
-        body: json,
+        body: AWS_S3_ACCESS_ID,
     };
     return response;
 };
