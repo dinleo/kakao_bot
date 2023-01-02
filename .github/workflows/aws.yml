@@ -52,10 +52,9 @@ jobs:
           CI: true
         run:
           npm install
-          npm build index.mjs
       - name: zip
         run:
-          zip -j deploy.zip ./index.mjs
+          zip -j deploy.zip ./*
       - name: deploy
         run:
           aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip
