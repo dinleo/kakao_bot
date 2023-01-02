@@ -12,32 +12,36 @@ AWS.config.update({
     credentials: new AWS.Credentials(AWS_S3_ACCESS_ID, AWS_S3_ACCESS_SECRET)
 });
 
-const s3 = new AWS.S3({ params: { AccessPointArn: AWS_S3_ACCESS_POINT_ARN } });
+const s3 = new AWS.S3({params: {AccessPointArn: AWS_S3_ACCESS_POINT_ARN}});
 
-export const handler = async(event) => {
+export const handler = async (event) => {
     // TODO implement
+    let json = await readJSON('JSON/room/shortcut.json')
     const response = {
         statusCode: 200,
-        body: JSON.stringify(readJSON()),
+        body: JSON.stringify(json),
     };
     return response;
 };
 
-const readJSON = () => {
-    let json;
-    s3.getObject({
-        Bucket: 'kakaobot',
-        Key: 'JSON/dict/words.json'
-    }, function(err, data) {
-        if (err) {
-            console.error(err);
-        } else {
-            json = JSON.parse(data.Body.toString())
-        }
-    });
-
-    return json
+const readJSON = (key) => {
+    return new Promise((resolve, reject) => {
+        s3.getObject({
+            Bucket: 'kakaobot',
+            Key: key
+        }, function (err, data) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(JSON.parse(data.Body.toString()))
+            }
+        });
+    })
 }
+
+let a = await readJSON('JSON/room/shortcut.json')
+console.log(a)
+
 
 
 
