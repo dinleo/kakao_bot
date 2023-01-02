@@ -51,7 +51,8 @@ jobs:
         env:
           CI: true
         run:
-          npm i
+          npm install
+          npm build index.mjs
       - name: zip
         run:
           zip -j deploy.zip ./index.mjs
