@@ -15,23 +15,23 @@ AWS.config.update({
 const s3 = new AWS.S3({ params: { AccessPointArn: ACCESS_POINT_ARN } });
 
 
-const readJSON = () => {
-    let json;
-    s3.getObject({
-        Bucket: 'kakaobot',
-        Key: 'JSON/dict/words.json'
-    }, function(err, data) {
-        if (err) {
-            console.error(err);
-        } else {
-            json = JSON.parse(data.Body.toString())
-        }
-    });
+// const readJSON = () => {
+//     let json;
+//     s3.getObject({
+//         Bucket: 'kakaobot',
+//         Key: 'JSON/dict/words.json'
+//     }, function(err, data) {
+//         if (err) {
+//             console.error(err);
+//         } else {
+//             json = JSON.parse(data.Body.toString())
+//         }
+//     });
+//
+//     return json
+// }
 
-    return json
-}
-
-console.log(readJSON())
+console.log('good')
 
 
 
