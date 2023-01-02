@@ -16,7 +16,7 @@ const s3 = new AWS.S3({params: {AccessPointArn: AWS_S3_ACCESS_POINT_ARN}});
 
 export const handler = async (event) => {
     // TODO implement
-    let json = await readJSON('JSON/room/shortcut.json')
+    let json = await readJSON()
     const response = {
         statusCode: 200,
         body: json,
@@ -24,11 +24,11 @@ export const handler = async (event) => {
     return response;
 };
 
-const readJSON = (key) => {
+const readJSON = () => {
     return new Promise((resolve, reject) => {
         s3.getObject({
             Bucket: 'kakaobot',
-            Key: key
+            Key: 'JSON/room/shortcut.json'
         }, function (err, data) {
             if (err) {
                 reject(err)
