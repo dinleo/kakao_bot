@@ -54,8 +54,7 @@ jobs:
           npm install
       - name: zip
         run:
-          zip -j deploy.zip ./index.mjs*
+          zip -j deploy.zip ./*
       - name: deploy
         run:
-          npx build index.mjs
           aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip

@@ -1,11 +1,9 @@
 {
   "name": "kakao_bot",
   "version": "1.0.0",
-  "description": "",
   "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "next build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +13,15 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "lodash": "^4.17.21"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinleo/kakao_bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dinleo/kakao_bot/issues"
+  },
+  "homepage": "https://github.com/dinleo/kakao_bot#readme",
+  "description": ""
 }
