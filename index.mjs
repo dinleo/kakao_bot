@@ -18,7 +18,7 @@ export const handler = async(event) => {
     // TODO implement
     const response = {
         statusCode: 200,
-        body: JSON.stringify('d'),
+        body: JSON.stringify(readJSON()),
     };
     return response;
 };
@@ -38,8 +38,6 @@ const readJSON = () => {
 
     return json
 }
-
-console.log(readJSON()['a'])
 
 
 
