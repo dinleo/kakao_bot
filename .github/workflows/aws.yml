@@ -26,10 +26,9 @@ jobs:
           CI: true
         run:
           npm install
-          npm run build
       - name: zip
         run:
-          zip -j deploy.zip ./*
+          zip -r deploy.zip ./*
       - name: deploy
         run:
           aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip
