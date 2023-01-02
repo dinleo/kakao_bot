@@ -39,11 +39,6 @@ const readJSON = (key) => {
     })
 }
 
-let a = await readJSON('JSON/room/shortcut.json')
-console.log(a)
-
-
-
 
 // s3.putObject({
 //     Bucket: 'kakaobot',
