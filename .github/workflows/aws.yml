@@ -41,18 +41,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18'
-
       - name: Install serverless globally
           run: npm install -g serverless
-
       - name: Configure serverless authentication
           run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
       - name: npm install
         env:
           CI: true
         run:
           npm ci
-
       - name: Deploy lambda function
           run: sls deploy
