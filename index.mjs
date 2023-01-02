@@ -1,32 +1,49 @@
 import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
 
-// Set the region where the bucket is located
+dotenv.config()
+
+const ACCESS_POINT_ARN = process.env.ACCESS_POINT_ARN
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
+
 AWS.config.update({region: 'ap-northeast-2'});
-
-// Create an S3 client object
-const s3 = new AWS.S3();
-
-// Set the bucket and key of the object you want to read/write
-const bucket = 'kakaobot';
-const key = 'JSON/dict/dict.json';
-let dict
-
-// Read the object from the bucket
-s3.getObject({Bucket: bucket, Key: key}, (err, data) => {
-    if (err) {
-        console.error(err);
-    } else {
-        dict = data.Body.toString()
-    }
+AWS.config.update({
+    credentials: new AWS.Credentials(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 });
 
-// Write a new object to the bucket
-// const content = 'Hello, World!';
-// s3.putObject({Bucket: bucket, Key: key, Body: content}, (err, data) => {
+const s3 = new AWS.S3({ params: { AccessPointArn: ACCESS_POINT_ARN } });
+
+
+const readJSON = () => {
+    let json;
+    s3.getObject({
+        Bucket: 'kakaobot',
+        Key: 'JSON/dict/words.json'
+    }, function(err, data) {
+        if (err) {
+            console.error(err);
+        } else {
+            json = JSON.parse(data.Body.toString())
+        }
+    });
+
+    return json
+}
+
+console.log(readJSON())
+
+
+
+// s3.putObject({
+//     Bucket: 'kakaobot',
+//     Key: 'JSON/dict/words.json',
+//     Body: JSON.stringify(a)
+// }, function(err) {
 //     if (err) {
 //         console.error(err);
 //     } else {
-//         console.log('Successfully wrote object to bucket');
+//         console.log('Successfully wrote file to S3 bucket');
 //     }
 // });
 
@@ -34,10 +51,7 @@ export const handler = async(event) => {
     // TODO implement
     const response = {
         statusCode: 200,
-        body: JSON.stringify(dict),
+        body: JSON.stringify('d'),
     };
     return response;
 };
-
-
-console.log("hello")
