@@ -31,7 +31,7 @@ const s3 = new AWS.S3({ params: { AccessPointArn: ACCESS_POINT_ARN } });
 //     return json
 // }
 
-console.log('good')
+console.log('good!!!!!')
 
 
 
