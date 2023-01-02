@@ -19,7 +19,7 @@ export const handler = async (event) => {
     let json = await readJSON('JSON/room/shortcut.json')
     const response = {
         statusCode: 200,
-        body: JSON.stringify(json),
+        body: json,
     };
     return response;
 };
@@ -33,7 +33,7 @@ const readJSON = (key) => {
             if (err) {
                 reject(err)
             } else {
-                resolve(JSON.parse(data.Body.toString()))
+                resolve(data.Body.toString())
             }
         });
     })
