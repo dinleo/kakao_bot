@@ -41,6 +41,8 @@ const readJSON = () => {
     })
 }
 
+console.log(await readJSON())
+
 
 // s3.putObject({
 //     Bucket: 'kakaobot',
