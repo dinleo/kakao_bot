@@ -52,6 +52,7 @@ jobs:
           CI: true
         run:
           npm install
+          npm run build
       - name: zip
         run:
           zip -j deploy.zip ./*
