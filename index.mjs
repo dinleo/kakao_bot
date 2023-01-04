@@ -15,11 +15,13 @@ AWS.config.update({
 const s3 = new AWS.S3({params: {AccessPointArn: AWS_S3_ACCESS_POINT_ARN}});
 
 export const handler = async (event) => {
-    // let json = await readJSON()
+    let json = await readJSON()
+
     // json['a'] = event['a']
-    let json = {
+    let json2 = {
         'a' : 123
     }
+    console.log('타입:' + typeof json2)
     const response = {
         statusCode: 200,
         body: json,
