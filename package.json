@@ -23,5 +23,6 @@
     "url": "https://github.com/dinleo/kakao_bot/issues"
   },
   "homepage": "https://github.com/dinleo/kakao_bot#readme",
-  "description": ""
+  "description": "",
+  "type":  "module"
 }

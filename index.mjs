@@ -15,11 +15,11 @@ AWS.config.update({
 const s3 = new AWS.S3({params: {AccessPointArn: AWS_S3_ACCESS_POINT_ARN}});
 
 export const handler = async (event) => {
-
-    let json = await readJSON()
+    // let json = await readJSON()
+    // json['a'] = event['a']
     const response = {
         statusCode: 200,
-        body: json,
+        body: 'hello',
     };
     return response;
 };
@@ -33,14 +33,11 @@ const readJSON = () => {
             if (err) {
                 reject(err)
             } else {
-                resolve(data.Body.toString())
+                resolve(JSON.parse(data.Body.toString()))
             }
         });
     })
 }
-
-console.log(await readJSON())
-
 
 // s3.putObject({
 //     Bucket: 'kakaobot',
