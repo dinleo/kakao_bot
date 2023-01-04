@@ -33,11 +33,11 @@ jobs:
           AWS_S3_ACCESS_SECRET: ${{ secrets.AWS_S3_ACCESS_SECRET }}
           AWS_S3_ACCESS_POINT_ARN: ${{ secrets.AWS_S3_ACCESS_POINT_ARN }}
 
-      - name: npm install
-        env:
-          CI: true
-        run:
-          npm install
+#      - name: npm install
+#        env:
+#          CI: true
+#        run:
+#          npm install
 
       - name: zip
         run:
