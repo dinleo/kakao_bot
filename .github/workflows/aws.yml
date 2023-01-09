@@ -38,6 +38,7 @@ jobs:
           CI: true
         run:
           npm install
+          npm install @babel/preset-env
       - name: build
         run:
           npm run build
