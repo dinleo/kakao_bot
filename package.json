@@ -1,9 +1,11 @@
 {
   "name": "kakao_bot",
   "version": "1.0.0",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "devserver": "webpack-dev-server --open --progress"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,16 @@
     "express": "^4.18.2",
     "lodash": "^4.17.21"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.1.2",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dinleo/kakao_bot.git"
@@ -23,6 +34,6 @@
     "url": "https://github.com/dinleo/kakao_bot/issues"
   },
   "homepage": "https://github.com/dinleo/kakao_bot#readme",
-  "description": "",
-  "type":  "module"
+  "description": ""
+
 }

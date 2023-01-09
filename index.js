@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
+import "regenerator-runtime/runtime.js";
 
 dotenv.config()
 
