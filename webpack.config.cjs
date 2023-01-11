@@ -2,10 +2,11 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './index.js',
+    entry: './main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.cjs',
+        filename: 'main.cjs',
+        libraryTarget: 'commonjs2',
     },
     target: 'node',
     devtool: 'source-map',
