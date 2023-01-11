@@ -9,7 +9,7 @@ module.exports = {
     target: 'node',
     // main file
     entry: {
-        main: './test.js'
+        main: './index.js'
     },
     // build file
     output: {
