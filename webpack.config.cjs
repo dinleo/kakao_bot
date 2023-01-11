@@ -15,7 +15,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: 'index.cjs'
+        filename: 'index.mjs'
     },
     // 모듈 적용
     module: {

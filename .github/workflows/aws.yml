@@ -42,8 +42,10 @@ jobs:
         run:
           npm run build
       - name: zip
-        run:
-          zip -r deploy.zip ./dist/*
+        run: |
+          cd dist
+          zip -j deploy.zip ./*
+          cd ..
       - name: deploy
         run:
-          aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://deploy.zip
+          aws lambda update-function-code --function-name=kakao_bot --zip-file=fileb://dist//deploy.zip
