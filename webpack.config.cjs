@@ -6,8 +6,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.cjs',
-        library: 'index',
-        libraryTarget: 'commonjs2',
     },
     target: 'node',
     devtool: 'source-map',
