@@ -1,8 +1,7 @@
 import AWS from 'aws-sdk';
-import dotenv from 'dotenv';
-import "regenerator-runtime/runtime.js";
+import {config} from 'dotenv';
 
-dotenv.config()
+config()
 
 const AWS_S3_ACCESS_POINT_ARN = process.env.AWS_S3_ACCESS_POINT_ARN
 const AWS_S3_ACCESS_ID = process.env.AWS_S3_ACCESS_ID
@@ -56,4 +55,3 @@ const readJSON = () => {
 //         console.log('Successfully wrote file to S3 bucket');
 //     }
 // });
-
