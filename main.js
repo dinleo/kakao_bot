@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import {config} from 'dotenv';
+import {readFileSync, writeFileSync} from "fs";
 
 config()
 
@@ -15,13 +16,21 @@ AWS.config.update({
 const s3 = new AWS.S3({params: {AccessPointArn: AWS_S3_ACCESS_POINT_ARN}});
 
 export const handler = async (event) => {
-    let json = await readJSON()
+    // let json = await readJSON()
+    //
+    // // json['a'] = event['a']
 
-    // json['a'] = event['a']
+    // console.log('타입:' + typeof json2)
+
     let json2 = {
         'a' : 123
     }
-    console.log('타입:' + typeof json2)
+    writeFileSync('invest.json', JSON.stringify(json2))
+
+    const buf = readFileSync('invest.json')
+    const str = buf.toString()
+    let json = JSON.parse(str)
+
     const response = {
         statusCode: 200,
         body: json,
