@@ -1,3 +1,10 @@
+# install
+# build (webpack)
+#    main.js -> dist/main.cjs (compile)
+# zip & deploy
+# export handler
+#    dist/main.cjs -> dist/index.js -> aws lambda
+
 name: Deploy to Amazon ECS
 
 on:
