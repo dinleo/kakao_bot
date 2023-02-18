@@ -9,6 +9,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 export const handler = async (event) => {
     let json = await readJSON(event)
+    if (json == null){
+        let q = {
+            'name':'밈미'
+        }
+        json = await readJSON(q)
+    }
     const response = {
         statusCode: 200,
         body: json,
