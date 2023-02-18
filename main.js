@@ -17,7 +17,7 @@ export const handler = async (event) => {
 
 const readJSON = async (query) => {
     const collection = client.db('sample_mflix').collection('comments');
-    let json = collection.findOne(query).then(v => {
+    let json = await collection.findOne(query).then(v => {
         client.close()
         return v
     }).catch(e =>{
