@@ -1,4 +1,3 @@
-import AWS from 'aws-sdk';
 import {config} from 'dotenv';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
@@ -6,8 +5,6 @@ config()
 
 const uri = process.env.MONGO_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
-AWS.config.update({region: 'ap-northeast-2'});
 
 export const handler = async (event) => {
     let json = await readJSON(event)
