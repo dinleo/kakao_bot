@@ -15,11 +15,11 @@ export const handler = async (event) => {
     //     }
     //     json = await readJSON(q)
     // }
-    let json = '\n'
-    json += typeof event + '\n'
-    json += event + '\n'
+    let json = []
+    json['type'] = typeof event
+    json['whole'] = event
     for (let i in event){
-        json += '\n' + i + ': ' + event[i]
+        json[i] = event[i]
     }
 
     const response = {
