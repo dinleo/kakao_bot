@@ -18,6 +18,9 @@ export const handler = async (event) => {
     let json = '\n'
     json += typeof event + '\n'
     json += event + '\n'
+    for (let i in event){
+        json += '\n' + i + ': ' + json[i]
+    }
 
     const response = {
         statusCode: 200,
