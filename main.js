@@ -15,7 +15,7 @@ export const handler = async (event) => {
     //     }
     //     json = await readJSON(q)
     // }
-    let json = []
+    let json = {}
     json['type'] = typeof event
     json['whole'] = event
     for (let i in event){
