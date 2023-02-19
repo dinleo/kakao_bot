@@ -15,12 +15,7 @@ export const handler = async (event) => {
     //     }
     //     json = await readJSON(q)
     // }
-    let json = {}
-    json['타입'] = typeof event
-    json['전체'] = event
-    for (let i in event){
-        json['웅' +i] = event[i]
-    }
+    let json = event['requestContext']
 
     const response = {
         statusCode: 200,
