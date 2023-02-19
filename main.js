@@ -19,7 +19,7 @@ export const handler = async (event) => {
     json += typeof event + '\n'
     json += event + '\n'
     for (let i in event){
-        json += '\n' + i + ': ' + json[i]
+        json += '\n' + i + ': ' + event[i]
     }
 
     const response = {
