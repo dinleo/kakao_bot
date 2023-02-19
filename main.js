@@ -15,7 +15,7 @@ export const handler = async (event) => {
     //     }
     //     json = await readJSON(q)
     // }
-    let json = event['requestContext']
+    let json = event['body']
 
     const response = {
         statusCode: 200,
