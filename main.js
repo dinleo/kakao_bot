@@ -8,14 +8,7 @@ const uri = process.env.MONGO_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 export const handler = async (event) => {
-    // let json = await readJSON(event)
-    // if (json == null){
-    //     let q = {
-    //         'name':'밈미'
-    //     }
-    //     json = await readJSON(q)
-    // }
-    let json = event['body']
+    let json = await readJSON(event['body'])
 
     const response = {
         statusCode: 200,
