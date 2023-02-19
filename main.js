@@ -1,6 +1,6 @@
 import {config} from 'dotenv';
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import {resolve} from "@babel/core/lib/vendor/import-meta-resolve.js";
+import {resolve, t} from "@babel/core/lib/vendor/import-meta-resolve.js";
 
 config()
 
@@ -8,7 +8,11 @@ const uri = process.env.MONGO_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 export const handler = async (event) => {
-    let json = await readJSON(event['body'])
+
+    let json = {
+        '타입': typeof event['body'],
+        '바디': event['body']
+    }
 
     const response = {
         statusCode: 200,
