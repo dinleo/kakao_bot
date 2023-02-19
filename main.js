@@ -16,10 +16,10 @@ export const handler = async (event) => {
     //     json = await readJSON(q)
     // }
     let json = {}
-    json['type'] = typeof event
-    json['whole'] = event
+    json['타입'] = typeof event
+    json['전체'] = event
     for (let i in event){
-        json[i] = event[i]
+        json['웅' +i] = event[i]
     }
 
     const response = {
