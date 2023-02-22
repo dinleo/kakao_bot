@@ -20,7 +20,7 @@ export const handler = async (event) => {
 
 const readJSON = async (query) => {
     return client.connect().then(v => {
-        const collection = client.db('sample_mflix').collection('comments');
+        const collection = client.db('test').collection('test');
         return collection.findOne(query).then(v => {
             client.close()
             return v
