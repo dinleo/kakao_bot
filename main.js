@@ -1,15 +1,15 @@
 import {config} from 'dotenv';
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import {resolve, t} from "@babel/core/lib/vendor/import-meta-resolve.js";
 
 config()
 
-const uri = process.env.MONGO_URI
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const mongoUri = process.env.MONGO_URI
+const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 export const handler = async (event) => {
     let query = JSON.parse(event['body'])
     let json = await readJSON(query)
+
 
     const response = {
         statusCode: 200,
