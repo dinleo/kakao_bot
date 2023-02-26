@@ -15,7 +15,9 @@ export const handler = async (event) => {
     let output = ''
     output += typeof event
     output += event
-    return output
+    return new Promise(resolve => {
+        resolve(output)
+    })
     let req = event['body']
     let res = main(req['fun'], req['room'], req['sender'], req['message'])
 
