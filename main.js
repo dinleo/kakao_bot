@@ -51,7 +51,7 @@ const main = async (fun, room, sender, message) => {
 
 const addTodo = (room, sender, newTodo) => {
     if (isEmpty(newTodo)) {
-        throw '투두추가 실패😟\\n추가할 할일들을 띄어쓰기로 구분해 입력해주세요.\\n ex) 투두추가 잠자기 밥먹기';
+        throw '투두추가 실패😟\n추가할 할일들을 띄어쓰기로 구분해 입력해주세요.\n ex) 투두추가 잠자기 밥먹기';
     }
     newTodo = newTodo.trim()
     let output = ''
@@ -67,12 +67,12 @@ const addTodo = (room, sender, newTodo) => {
                     continue
                 }
                 if (res['todo'].includes(j)) {
-                    output += '[' + j + '] 가 ToDo 에 있습니다.\\n'
+                    output += '[' + j + '] 가 ToDo 에 있습니다.\n'
                 } else {
                     res['todo'].push(j)
                 }
             }
-            output += '투두추가 완료🐣\\n'
+            output += '투두추가 완료🐣\n'
             output += printArray(res['todo'])
             return res
         })
@@ -81,7 +81,7 @@ const addTodo = (room, sender, newTodo) => {
 }
 
 const allTodo = (room, sender) => {
-    let output = '🗓️' + sender + '님의 ToDo 목록🗓️\\n';
+    let output = '🗓️' + sender + '님의 ToDo 목록🗓️\n';
     return findDB('sender', 'todo', room, sender)
         .then(res => {
             if (res == null) {
@@ -94,7 +94,7 @@ const allTodo = (room, sender) => {
 
 const removeTodo = (room, sender, toRemoveTodo) => {
     if (isEmpty(toRemoveTodo)) {
-        throw '투두삭제 실패😟\\n삭제할 할일들을 띄어쓰기로 구분해 입력해주세요.\\n ex) 투두삭제 잠자기 밥먹기\\n or) 투두삭제 1 4 5';
+        throw '투두삭제 실패😟\n삭제할 할일들을 띄어쓰기로 구분해 입력해주세요.\n ex) 투두삭제 잠자기 밥먹기\n or) 투두삭제 1 4 5';
     }
     let output = ''
     return findDB('sender', 'todo', room, sender)
@@ -115,12 +115,12 @@ const removeTodo = (room, sender, toRemoveTodo) => {
 
             res['todo'] = newTodo
             if (removedTodo.length == 0){
-                throw '투두삭제 실패😟\\n삭제할 투두가 목록에 하나도 없습니다.'
+                throw '투두삭제 실패😟\n삭제할 투두가 목록에 하나도 없습니다.'
             }
             for (let t of removedTodo) {
-                output += t + '\\n'
+                output += t + '\n'
             }
-            output += '\\n투두삭제 완료🐣\\n'
+            output += '\n투두삭제 완료🐣\n'
             output += printArray(newTodo)
             return res
         })
@@ -193,7 +193,7 @@ const printArray = (arr) => {
     let output = ''
     let i = 1
     for (let a of arr) {
-        output += '\\n[' + i + '] ' + a
+        output += '\n[' + i + '] ' + a
         i += 1
     }
     return output
@@ -202,7 +202,7 @@ const printArray = (arr) => {
 const printObject = (obj) => {
     let output = ''
     for (let k in obj) {
-        output += '\\n' + k + ': ' + obj[k]
+        output += '\n' + k + ': ' + obj[k]
     }
     return output
 }
