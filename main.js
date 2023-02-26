@@ -14,7 +14,9 @@ const client = new MongoClient(mongoUri, {
 export const handler = async (event) => {
     let output = ''
     output += typeof event
-    output += event
+    for (let i in event){
+        output += i + " : " + event[i]
+    }
     return new Promise(resolve => {
         resolve(output)
     })
