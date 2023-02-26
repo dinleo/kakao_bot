@@ -1,4 +1,4 @@
 /node_modules/
 .env
-test.js
-test2.js
+메인테스트.js
+파일.js
