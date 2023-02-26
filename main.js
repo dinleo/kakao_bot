@@ -110,18 +110,24 @@ const removeTodo = (room, sender, toRemoveTodo) => {
                 }
             }
 
-            res['todo'] = newTodo
             if (removedTodo.length == 0){
                 throw '투두삭제 실패😟\n삭제할 투두가 목록에 하나도 없습니다.'
             }
             for (let t of removedTodo) {
                 output += t + '\n'
             }
-            output += '\n투두삭제 완료🐣\n'
-            output += printArray(newTodo)
+            res['todo'] = newTodo
+            output += '\n투두삭제 완료🐣'
             return res
         })
-        .then(res => updateDB('sender', 'todo', room, sender, res))
+        .then(res => {
+            if (res['todo'].length == 0){
+                return deleteDB('sender', 'todo', room, sender)
+            } else{
+                output += ' ' + printArray(res['todo'])
+                return updateDB('sender', 'todo', room, sender, res)
+            }
+        })
         .then(() => output)
 }
 
