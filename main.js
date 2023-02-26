@@ -193,7 +193,7 @@ const printArray = (arr) => {
     let output = ''
     let i = 1
     for (let a of arr) {
-        output += '\n[' + i + '] ' + a
+        output += '\\n[' + i + '] ' + a
         i += 1
     }
     return output
@@ -202,7 +202,7 @@ const printArray = (arr) => {
 const printObject = (obj) => {
     let output = ''
     for (let k in obj) {
-        output += '\n' + k + ': ' + obj[k]
+        output += '\\n' + k + ': ' + obj[k]
     }
     return output
 }
