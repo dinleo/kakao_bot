@@ -12,9 +12,13 @@ const client = new MongoClient(mongoUri, {
 
 
 export const handler = async (event) => {
+    let output = ''
+    output += typeof event
+    output += event
+    return output
     let req = event['body']
-    let res = await main(req['fun'], req['room'], req['sender'], req['message'])
-    return '할로'
+    let res = main(req['fun'], req['room'], req['sender'], req['message'])
+
     return res
         .then(v => {
             return {statusCode: 200, body: v}
