@@ -13,7 +13,8 @@ const client = new MongoClient(mongoUri, {
 
 export const handler = async (event) => {
     let req = JSON.parse(event['body'])
-    return await main(req['fun'], req['room'], req['sender'], req['message'])
+    let res = await main(req['fun'], req['room'], req['sender'], req['message'])
+    return res
 };
 
 const main = async (fun, room, sender, message) => {
