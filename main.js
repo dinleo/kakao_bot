@@ -13,8 +13,8 @@ const client = new MongoClient(mongoUri, {
 
 export const handler = async (event) => {
     let req = event['body']
-    let res = main(req['fun'], req['room'], req['sender'], req['message'])
-
+    let res = await main(req['fun'], req['room'], req['sender'], req['message'])
+    return res
     return res
         .then(v => {
             return {statusCode: 200, body: v}
