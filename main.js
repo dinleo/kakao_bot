@@ -15,7 +15,7 @@ export const handler = async (event) => {
     let output = ''
     output += typeof event
     for (let i in event){
-        output += i + " : " + event[i]
+        output += '\n' + i + ':' + event[i]
     }
     return new Promise(resolve => {
         resolve(output)
