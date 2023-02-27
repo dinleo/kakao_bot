@@ -37,11 +37,48 @@ const main = async (fun, room, sender, message) => {
         case 'removeAllTodo':
             res = removeAllTodo(room, sender);
             break
+        case 'test':
+            res = test(room, sender, message)
+            break
         default:
             res = Promise.reject('no Function')
     }
 
     return res
+}
+
+const test = (room ,sender, message) => {
+    const newValidation = {
+        validator: {
+            $jsonSchema: {
+                bsonType: 'object',
+                required: ['room', 'sender', 'todo'],
+                properties: {
+                    room: {
+                        bsonType: 'string'
+                    },
+                    sender: {
+                        bsonType: 'string'
+                    },
+                    todo: {
+                        bsonType: 'array',
+                        items: {
+                            bsonType: 'string'
+                        }
+                    }
+                }
+            }
+        }
+    };
+    return client.connect().then(v=>{
+
+        client.db('sender').command({
+            collMod: 'myCollection',
+            validator: newValidation
+        }).then(v=>{
+            return v
+        });
+    })
 }
 
 // ==================투두 함수==================
@@ -145,37 +182,37 @@ const removeAllTodo = (room, sender) => {
 
 // ==================파일 함수==================
 
-const findDB = async (db, collection, room, sender) => {
+const findDB = async (dbName, collectionName, room, sender) => {
     await client.connect()
 
     return client
-        .db(db)
-        .collection(collection)
+        .db(dbName)
+        .collection(collectionName)
         .findOne({'room': room, 'sender': sender})
         .finally(() => {
             client.close()
         })
 }
 
-const updateDB = async (db, collection, room, sender, updateValue) => {
+const updateDB = async (dbName, collectionName, room, sender, updateValue) => {
     await client.connect()
     updateValue['room'] = room
     updateValue['sender'] = sender
     return client
-        .db(db)
-        .collection(collection)
+        .db(dbName)
+        .collection(collectionName)
         .updateOne({'room': room, 'sender': sender}, {'$set': updateValue}, {'upsert': true})
         .finally(() => {
             client.close()
         })
 }
 
-const deleteDB = async (db, collection, room, sender) => {
+const deleteDB = async (dbName, collectionName, room, sender) => {
     await client.connect()
 
     return client
-        .db(db)
-        .collection(collection)
+        .db(dbName)
+        .collection(collectionName)
         .deleteOne({'room': room, 'sender': sender})
         .finally(() => {
             client.close()

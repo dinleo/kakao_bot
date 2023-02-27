@@ -1,7 +1,5 @@
 /node_modules/
 .env
-메인테스트.js
-기타테스트.js
 invest.json
 todo.json
 파일.js
