@@ -80,6 +80,7 @@ const naverStock = (message) => {
         .then(v => {
             let json = {}
             let doc = load(v.data)
+            let stockNow = doc('div.stock_price').text().split(' ')[1]
             let stockPrice = doc('div.stock_info').text()
             let stockName = doc('div.stock_tlt').text()
             if (isEmpty(stockPrice)) {
@@ -112,7 +113,7 @@ const naverStock = (message) => {
             const oPrice = removeComma(json['전일종가']);
             let hPrice = removeComma(json['고가']);
             let lPrice = removeComma(json['저가']);
-            let cPrice = removeComma(json['시가']);
+            let cPrice = removeComma(stockNow);
             let volume = json['거래량'];
 
 
@@ -135,16 +136,17 @@ const naverStock = (message) => {
             if (stockName.includes('KOSPI') || stockName.includes('KOSDAQ')) {
                 moneyExp = ' 원';
             }
-            let output = '[' + stockName + ']\n'
-            let tmp = {
-                '📈최고가' : '(' + hPct + '%) ' + refineNum(hPrice, decPoint) + moneyExp,
-                '📉최저가' : '(' + lPct + '%) ' + refineNum(lPrice, decPoint) + moneyExp,
-                '📊거래량' : volume,
-                '등락' : updw + '(' + cPct + '%) ' + refineNum(change, decPoint) + moneyExp + '\n',
-                '💰현재가': refineNum(cPrice, decPoint) + moneyExp,
-            }
 
-            return output + printObject(tmp, true)
+            let tmp = [
+                '[' + stockName + ']\n',
+                '📈최고가: (' + hPct + '%) ' + refineNum(hPrice, decPoint) + moneyExp,
+                '📉최저가: (' + lPct + '%) ' + refineNum(lPrice, decPoint) + moneyExp,
+                '📊거래량: ' + volume,
+                updw + '등락: (' + cPct + '%) ' + refineNum(change, decPoint) + moneyExp + '\n',
+                '💰현재가: ' + refineNum(cPrice, decPoint) + moneyExp,
+            ]
+
+            return printArray(tmp, false,false)
         })
 }
 
@@ -174,7 +176,7 @@ const addTodo = (room, sender, newTodo) => {
                 }
             }
             output += '투두추가 완료🐣\n'
-            output += printArray(res['todo'], true)
+            output += printArray(res['todo'], true, true)
             return res
         })
         .then(res => updateDB('sender', 'todo', room, sender, res))
@@ -188,7 +190,7 @@ const allTodo = (room, sender) => {
             if (res == null) {
                 throw '등록된 투두가 없습니다.😟'
             }
-            output += printArray(res['todo'], true)
+            output += printArray(res['todo'], true, true)
             return output
         })
 }
@@ -228,7 +230,7 @@ const removeTodo = (room, sender, toRemoveTodo) => {
             if (res['todo'].length == 0) {
                 return deleteDB('sender', 'todo', room, sender)
             } else {
-                output += ' ' + printArray(res['todo'], true)
+                output += ' ' + printArray(res['todo'], true, true)
                 return updateDB('sender', 'todo', room, sender, res)
             }
         })
@@ -379,7 +381,7 @@ const isEmpty = (str) => {
 
 // ==================정제 함수==================
 
-const printArray = (arr, keys) => {
+const printArray = (arr, keys, nStart) => {
     let output = ''
     if (keys){
         let i = 1
@@ -392,10 +394,13 @@ const printArray = (arr, keys) => {
             output += '\n' + a
         }
     }
+    if(!nStart){
+        output = output.slice(1)
+    }
     return output
 }
 
-const printObject = (obj, keys) => {
+const printObject = (obj, keys, nStart) => {
     let output = ''
     if (keys){
         for (let k in obj) {
@@ -405,6 +410,9 @@ const printObject = (obj, keys) => {
         for (let k in obj) {
             output += '\n' + obj[k]
         }
+    }
+    if(!nStart){
+        output = output.slice(1)
     }
     return output
 }
