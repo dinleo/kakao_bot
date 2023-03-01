@@ -19,8 +19,11 @@
   "homepage": "https://github.com/dinleo/kakao_bot#readme",
   "dependencies": {
     "aws-sdk": "^2.1292.0",
+    "axios": "^1.3.4",
+    "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.3",
-    "mongodb": "^5.0.1"
+    "mongodb": "^5.0.1",
+    "node-fetch": "^3.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",

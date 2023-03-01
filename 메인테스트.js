@@ -2,10 +2,10 @@ import {handler} from "./main.js";
 
 const event = {
     'body' : JSON.stringify({
-        'fun': 'test',
+        'fun': 'naverStock',
         'room': 'room02',
         'sender': 'Leo',
-        'message': 'ㅎㅇ'
+        'message': '주 삼성전자'
     })
 }
 

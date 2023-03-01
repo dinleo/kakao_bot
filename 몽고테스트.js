@@ -1,5 +1,6 @@
 import {config} from 'dotenv';
 import {MongoClient, ServerApiVersion} from 'mongodb';
+import {readFileSync} from 'fs'
 
 config()
 
@@ -9,6 +10,9 @@ const print = (s) => {
     console.log(s)
 }
 
+const buf = readFileSync('C:\\Users\\dinle\\Code\\Bot\\kakao_bot\\todo.json')
+const str = buf.toString()
+let todoFile = JSON.parse(str)
 
 const main = async () => {
     let dbName = 'sender'
