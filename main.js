@@ -135,7 +135,7 @@ const naverStock = (message) => {
             if (stockName.includes('KOSPI') || stockName.includes('KOSDAQ')) {
                 moneyExp = ' 원';
             }
-            let output = '[' + stockName + ']'
+            let output = '[' + stockName + ']\n'
             let tmp = {
                 '📈최고가' : '(' + hPct + '%) ' + refineNum(hPrice, decPoint) + moneyExp,
                 '📉최저가' : '(' + lPct + '%) ' + refineNum(lPrice, decPoint) + moneyExp,
