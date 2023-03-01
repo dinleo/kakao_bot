@@ -135,9 +135,8 @@ const naverStock = (message) => {
             if (stockName.includes('KOSPI') || stockName.includes('KOSDAQ')) {
                 moneyExp = ' 원';
             }
-
+            let output = '[' + stockName + ']'
             let tmp = {
-                '[' : stockName + ']\n',
                 '📈최고가' : '(' + hPct + '%) ' + refineNum(hPrice, decPoint) + moneyExp,
                 '📉최저가' : '(' + lPct + '%) ' + refineNum(lPrice, decPoint) + moneyExp,
                 '📊거래량' : volume,
@@ -145,7 +144,7 @@ const naverStock = (message) => {
                 '💰현재가': refineNum(cPrice, decPoint) + moneyExp,
             }
 
-            return printObject(tmp, true)
+            return output + printObject(tmp, true)
         })
 }
 
