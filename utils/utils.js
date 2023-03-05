@@ -100,49 +100,6 @@ export default class utils {
     }
 
     // 검사
-    static isNature = (str) => {
-        const regExp = /^[0-9]*$/;
-        if (regExp.test(str)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    static isNum = (str) => {
-        const regExp = /^[0-9.-]*$/;
-        if (regExp.test(str)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    static isBad = (cmd) => {
-        for (let s of words['badWords']) {
-            if (cmd.includes(s)) {
-                return true;
-            }
-        }
-        return false
-    }
-
-    static isKorean = (str) => {
-        const regExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/;
-        if (regExp.test(str)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    static isEmpty = (str) => {
-        if (typeof str == 'undefined' || str == null || str == '') {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     // 정제
     static printArray = (arr, keys, nStart) => {
