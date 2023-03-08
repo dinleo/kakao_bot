@@ -20,7 +20,7 @@ const main = async (fun, room, sender, message) => {
             res = test(room, sender, message)
             break
         case 'gpt':
-            res = gpt.chat(room, sender, message.slice(3))
+            res = gpt.chat(room, sender, message)
             break
         case 'naverStock':
             res = mIdx.naverStock(message.slice(2))
