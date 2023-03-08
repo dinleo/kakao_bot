@@ -23,7 +23,8 @@
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.3",
     "mongodb": "^5.0.1",
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^3.3.0",
+    "openai": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",

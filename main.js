@@ -1,5 +1,6 @@
 import todo from './sub/todo.js'
 import mIdx from './sub/majorIndex.js'
+import gpt from './sub/gpt.js'
 
 export const handler = async (event) => {
     let req = JSON.parse(event['body'])
@@ -17,6 +18,9 @@ const main = async (fun, room, sender, message) => {
     switch (fun) {
         case 'test':
             res = test(room, sender, message)
+            break
+        case 'gpt':
+            res = gpt.chat(room, sender, message.slice(3))
             break
         case 'naverStock':
             res = mIdx.naverStock(message.slice(2))
